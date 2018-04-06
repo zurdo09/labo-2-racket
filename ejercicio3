@@ -1,0 +1,23 @@
+(display "**** Ciencias de la Computacion - 2018 ****\n")
+(display "**** Laboratorio #2 - Ejercicio #3 ****\n\n")
+(display "Numero de Marvin: ")
+(define numero1 (random (+ 10 80)))
+(display numero1)
+(newline)
+(display "Numero de Luis: ")
+(define numero2 (random (+ 10 80)))
+(display numero2)
+(newline)
+(if (= numero1 numero2)
+     (begin
+      (display "Empatados! vuelva a ejecutar el programa para resolver el empate")
+     )
+     (if (> numero1 numero2)
+         (begin
+           (display (string-append "Marvin escoge su numero es " (number->string numero1) " y es mayor."))
+           )
+         (begin
+           (display (string-append "Luis escoge su numero es " (number->string numero2) " y es mayor."))
+           )
+     )
+)

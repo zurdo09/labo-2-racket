@@ -1,0 +1,135 @@
+(display "**** Ciencias de la Computacion - 2018 ****\n")
+(display "**** Laboratorio #2 - Ejercicio #2 ****\n\n")
+; Evaluar si es triangulo equilatero
+(define (equilatero? lado1 lado2 lado3)
+
+  ; Escriba aqui su(s) linea(s) de codigo
+  ; debe definir una variable llamada equilatero
+  ; y asignarle la condicion para que un triangulo sea equilatero
+  ; Ejemplo:
+  ;    (define equilatero (> lado 1))
+  ;
+  ; No debe modificar nada mas
+  ;---------------------------
+
+
+  
+  ;---------------------------
+  (if equilatero #t #f)
+)
+
+; Evaluar si es triangulo isosceles
+(define (isosceles? lado1 lado2 lado3)
+  
+  ; Escriba aqui su(s) linea(s) de codigo
+  ; debe definir una variable llamada isosceles
+  ; y asignarle la condicion para que un triangulo sea isosceles
+  ; Ejemplo:
+  ;    (define isosceles (> lado 1))
+  ;
+  ; No debe modificar nada mas
+  ;---------------------------
+
+
+  
+  ;---------------------------
+  (if isosceles #t #f)
+)
+
+; Evaluar si es triangulo rectangulo
+(define (rectangulo? lado1 lado2 lado3)
+
+  ; Escriba aqui su(s) linea(s) de codigo
+  ; debe definir una variable llamada rectangulo
+  ; y asignarle la condicion para que un triangulo sea rectangulo
+  ; Ejemplo:
+  ;    (define rectangulo (> lado 1))
+  ;
+  ; No debe modificar nada mas
+  ;---------------------------
+
+
+  
+  ;---------------------------
+  (if rectangulo #t #f)
+)
+
+; NO MODIFIQUE CODIGO APARTIR DE AQUI
+; *************************************
+(define lst ())
+(define (test number lado1 lado2 lado3 comp1 comp2 comp3)
+  (newline)
+  (display (string-append "Test#" (number->string number)))
+  (display (string-append " - lado1="
+             (number->string lado1) ", lado2="
+             (number->string lado2) ", lado3="
+             (number->string lado3) " : "))(newline)
+  (display "Resultados : ")(newline)
+  (define pruebaA (equilatero? lado1 lado2 lado3))
+  (define pruebaB (isosceles? lado1 lado2 lado3))
+  (define pruebaC (rectangulo? lado1 lado2 lado3))
+  (display "Equilatero: ")(display pruebaA)
+  (display (if (eq? pruebaA comp1) (begin
+                                     (set! lst (append lst (list 1))) " - correcto :)") " - incorrecto :/ "))(newline)
+  (display "Isosceles: ")(display pruebaB)
+  (display (if (eq? pruebaB comp2)(begin
+                                     (set! lst (append lst (list 1))) " - correcto :)") " - incorrecto :/ "))(newline) 
+  (display "rectangulo: ")(display pruebaC)
+  (display (if (eq? pruebaC comp3) (begin
+                                     (set! lst (append lst (list 1))) " - correcto :)") " - incorrecto :/ "))(newline)
+)
+
+(define (enter)
+    (display "\nIngrese ENTER para siguiente test ..")(read-line))
+
+(define (autoevaluacion)
+  (display "\n CC1 - LAB #2 \n--------------------\n")
+  (display " MODO AUTOEVALUCION \n--------------------\n")
+  (display "PRUEBAS:\n")
+  (test 1 8 8 8 #t #t #f)(enter)
+  (test 2 5 5 4 #f #t #f)(enter)
+  (test 3 7 4 7 #f #t #f)(enter)
+  (test 4 4 9 9 #f #t #f)(enter)
+  (test 5 3 4 5 #f #f #t)(enter)
+  (test 6 4 3 5 #f #f #t)(enter)
+  (test 7 4 5 3 #f #f #t)(enter)
+  (test 8 5 3 4 #f #f #t)(enter)
+  (test 9 5 4 3 #f #f #t)(enter)
+  (test 10 1 2 3 #f #f #f)
+  (display "\nIngrese ENTER para ver resultados: ")(read-line)
+  (define correct_results (apply + lst))
+  (display "\nRESULTADOS FINALES: ")(newline)
+  (display "-----------------------")(newline)
+  (display (string-append "Tuvo " (number->string correct_results) "/30 resultados correctos"))(newline)
+  (display "Usted sacaria en este ejercicio: ")
+  (display (round (* 100 (/ correct_results 30))))(display "% aprox. ")(newline)
+)
+
+(define (iteractivo)
+  (display "\n CC1 - Lab#2 \n----------------\n")
+  (display " MODO ITERATIVO \n----------------\n")
+  (display "Ingrese lado1: ")(define lado1 (read-line))
+  (display "Ingrese lado2: ")(define lado2 (read-line))
+  (display "Ingrese lado3: ")(define lado3 (read-line))
+  (set! lado1 (string->number lado1))
+  (set! lado2 (string->number lado2))
+  (set! lado3 (string->number lado3))
+  (if (and (number? lado1)(number? lado2)(number? lado3))
+        (if (and (> lado1 0)(> lado2 0)(> lado3 0))
+           (begin
+             (display "Resultados : ")(newline)
+             (display "Equilatero: ")(display (equilatero? lado1 lado2 lado3))(newline)
+             (display "Isosceles: ")(display  (isosceles? lado1 lado2 lado3))(newline)
+             (display "Rectangulo: ")(display (rectangulo? lado1 lado2 lado3))(newline)
+           )
+           (begin
+             (display "Algun dato ingresado es invalido\nIngreso algo que no es positivo!")
+             (newline)
+           )
+         )
+      (begin
+        (display "Algun dato ingresado es invalido\nIngreso algo que no era numero!")
+        (newline)
+      )
+  )
+)
